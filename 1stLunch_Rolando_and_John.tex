@@ -1,0 +1,116 @@
+\documentclass{article}
+
+\input{macros.tex}
+
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\lecture{1}{April 12, 2017}{Rolando  La Placa- John Napp}{Mehdi Soleimanifar}
+
+
+\paragraph{Topics:}{First, Rolando talked about the universal recovery map for approximate Markov chains \cite{FR15}, and then John told us about the equivalence of the quantum approximate Markov chains and Gibbs states of one-dimensional local quantum Hamiltonians \cite{KB16}.}
+
+ 
+\section{Universal recovery map for approximate Markov chains \cite{FR15}}
+  \begin{mdframed}
+ \textbf{tl;dr:} given a state $\rho_{ABC}$, if the conditional mutual information is small, $A$ is only correlated to $C$ through $B$ up to a small error, in the sense that $C$ can be approximately recovered given the information contained in $B$ only. These states are called \textit{approximate quantum Markov chain}. 
+\end{mdframed}
+\subsection{Classical case}
+In classical case, we have a clear relation between \textit{conditional independence} of two random variables and \textit{conditional mutual information}. In particular, we have
+
+\begin{thm}
+Two random variables $A$ and $B$ are conditionally independent given $B$, meaning $\forall a,b,c$,
+\begin{align}\label{eq:1}
+p_{ABC}(a,b,c) = p_A(a)P_{B|A}(b|a)p_{C|B}(c|b),
+\end{align}
+if and only if
+\begin{align}
+	I(A:C|B)=0.
+\end{align} 
+ \end{thm}
+We call such chain of variables, $A-B-C$, an exact Markov chain. \\
+
+According to (\ref{eq:1}), for each Markov chain with a fixed conditional distribution $p_{C|B}(c|b)=\mathcal{N}(c|b)$, we have 
+\begin{align*}
+	p_{ABC}(a,b,c)=N(c|b)p_{AB}(a,b),
+\end{align*} 
+ so determining $p_{AB}$ and $a,b,c$ is enough to get $p_{ABC}(a,b,c)$. In other words, there exists a \textit{recovery map} $\mathcal{R}^{\mathcal{N}}(c|b)$ that maps $p_{AB}(a,b)$ to $p_{ABC}(a,b,c)$.\\
+ \subsection{Quantum case}
+ In quantum case, however, things are not as obvious as before, and the notion of conditional independence is not clear at first glance. Starting with a state $\rho_{ABC}$ on a tripartite quantum system $A\otimes B \otimes C$, we define the conditional mutual information 
+ \begin{align} 
+ I(A:C|B)=H(AB)+ H(BC)- H(B) - H(ABC). 
+ \end{align}
+Then, we have the non-trivial \textit{strong subadditivity} property which says $I(A,C|B)\geq 0$. It has been shown \cite{FR15} that the states with $I(A,C|B)=0$ characterize states ${\rho}_{ABC}$ whose system $C$ can be reconstructed just by acting on $B$, i.e., as in the classical case, there exists a recovery map $\mathcal{R}_{A\rightarrow BC}$ from $B$ to $B \otimes C$ such that
+\begin{align}
+	\rho_{ABC}=\mathcal{R}_{A\rightarrow BC}(\rho_{AB}).
+\end{align}
+We call these states (exact) quantum Markov chains. 
+\footnote{The specific form of the recovery map is also known, and is of the form $X_B  \mapsto \rho_{BC}^{\frac{1}{2}}(\rho_B^{-\frac{1}{2}}X_B \rho_B^{-\frac{1}{2}}\otimes \id_C)\rho_{BC}^{\frac{1}{2}}$.}
+To get some intuition, consider the case when $B$ is classical, i.e. 
+\begin{align}
+	 \rho_{ABC}=\sum_b p_B(b) \ketbra{b}{b}_B \otimes \rho_{AC,b}
+\end{align}
+When $\rho_{BC}=\rho_{B}\otimes \rho_{C}$, we expect this state to be Markovian since conditioned on the value of $B$, the marginal state $\rho_{AC,b}$ is a product state, meaning the two systems $A$ and $B$ are independent -- as required by our definition of a Markov chain. One can easily see that in this case indeed we have $I(A;B|C)=0$. Also, there exists a recovery map $R_{B\rightarrow BC}$ such that 
+\begin{align}
+	\mathcal{R}_{B\rightarrow BC} (\ketbra{b}{b}) = \ketbra{b}{b} \otimes  \rho_{C,b}  \quad (\forall b),
+\end{align}
+where $\rho_{C,b}=\tr_C(\rho_{AC,b})$. 
+This observation can be generalized as shown in \cite{FR15} to the following fact
+\begin{thm}
+	For a state $\rho_{ABC}$ satisfying strong subadditivity with equality, i.e. $I(A : C|B)=0$, the marginal state $\rho_{AC}$ is separable. Conversely, for each separable state $\rho_{AC}$, there exists an extension $ρ\rho_{ABC}$ such that $I(A : C|B) = 0$.
+\end{thm}
+Thus, in the exact case of $I(A:C|B)=0$, we have a meaningful generalization of the conditional independence in terms of recovery maps, but what about the approximate case where $I(A:C|B)\leq \varepsilon$? It turns out \cite{HJPW04} that we can still have the same interpretation:
+\begin{thm}
+	For any density operator $\rho_{BC}$ on $B\otimes C$ there exists a trace-preserving completely positive map $\mathcal{R}_{B\rightarrow BC}$ such that for any extension $\rho_{ABC}$ on $A \otimes B \otimes C$ 
+	\begin{align}\label{eq:2}
+		I(A : C|B) \geq -2\log_2 F(\rho_{ABC},\mathcal{R}_{B\rightarrow BC}(\rho_{AB}),
+	\end{align}
+	or equivalently 
+	\begin{align}
+		F(\rho_{ABC},\mathcal{R}_{B\rightarrow BC}(\rho_{AB}))\geq 2^{-\frac{1}{2}I(A:C|B)}.
+	\end{align}
+	where $F(.,.)$ is the fidelity of the states defined as $F(\rho,\sigma)=\Norm{\sqrt{\rho}\sqrt{\sigma}}_1$.
+\end{thm}
+Notice that (\ref{eq:2}) immediately gives both the strong subadditivity inequality, and the existence of the recovery map in the exact Markov chain discussed before. Also,  the recovery map is \textit{universal} in the sense that the result holds if the recovery map is chosen depending on $\rho_{BC}$ only, rather than on $\rho_{ABC}$.\\
+
+
+\section{Equivalence of the quantum approximate Markov chains and Gibbs states}
+
+We can extend the definition of Markov chain to an $n$-partite system and say $\rho_{A_1,\dots A_n}$ is a quantum $\varepsilon$-approximate Markov chain if 
+\begin{align}
+	I(A_i,\dots,A_{i-1}:A_{i+1},\dots ,A_n|A_i)\leq \varepsilon \quad i\in [n]
+\end{align}
+
+\subsection{Classical case}
+Classically, Markov chains are equivalent to the set of Gibbs states of 2-local Hamiltonians:
+\begin{align}
+	p_{A_1,\dots A_n}(a_1,\dots a_n)=\frac{\exp{-\sum_i h_i(a_i,a_{i+1})}}{Z}
+\end{align}
+This result is called Hammersley-Clifford Theorem. 
+\subsection{Quantum case}
+It has been shown that the same theorem remains valid in the case of an exact quantum Markov chain. Namely, a full rank quantum state $\rho _{A_1,\dots,A_n}$ is a quantum Markov chain if, and only if, it can be written as
+\begin{align}
+	\rho=\frac{\exp(-\sum_i h_i(a_i,a_{i+1}))}{Z}
+\end{align}
+where each $h_{i,i+1}$ only acts on subsystems $A_i, A_{i+1}$, such that $[h_{i,i+1}, h_{j,j+1}] = 0$ for all $i, j$. Therefore we have a characterization of full rank quantum Markov chains as Gibbs states of 1D commuting local quantum Hamiltonians.
+The main result of \cite{KB16} is that if we relax the condition of the previous result from exact Markov chains to approximate case, we get the following:
+\begin{itemize}
+	\item[-] Let $H=\sum_i h_i$ be a short-range one-dimensional Hamiltonian with $\Norm{h_i} \leq 1$. Then for every tripartite split of the system $ABC$,  if we choose the region $B$ sufficiently large, the Gibbs state can be approximately recovered from the partial trace over $C$ by performing a recovery map on $B$. In turn, this  implies the conditional mutual information between two regions $A$ and $C$ given a middle region $B$ decays exponentially with the square root of the length of $B$. 
+	\item[-]  Conversely, let $\rho _{A_1,\dots,A_n}$ be an quantum $\varepsilon$-approximate Markov chain. Then there exists a local Hamiltonian $H=\sum_i h_{A_,A_{i+1}}$, such that
+	\begin{align}
+		S(\rho ||\frac{e^{-H}}{\tr(e^{-H})})\leq \varepsilon n
+	\end{align}
+\end{itemize}
+the combination of the two results gives as a variant of the Hammersley-Clifford theorem for quantum approximate Markov chains.
+
+  \begin{thebibliography}{99}
+
+\bibitem{FR15} O. Fawzi and R. Renner. \textit{Quantum conditional mutual information and approximate markov chains}. Communications in Mathematical Physics, 340(2):575–611, 2015. \href{https://arxiv.org/pdf/1504.07251.pdf}{https://arxiv.org/pdf/1504.07251.pdf}
+
+
+\bibitem{HJPW04} P. Hayden, R. Jozsa, D. Petz, and A. Winter. \textit{Structure of states which satisfy strong subadditivity of quantum entropy with equality.} Communications in Mathematical Physics, 246(2):359–374, 2004. \href{https://arxiv.org/pdf/quant-ph/0304007.pdf}{https://arxiv.org/pdf/quant-ph/0304007.pdf}
+
+\bibitem{KB16} Kohtaro Kato and F.G.S.L. Brandao. \textit{Quantum approximate markov chains are thermal}. arXiv preprint: \href{https://arxiv.org/pdf/1609.06636.pdf}{https://arxiv.org/pdf/1609.06636.pdf}
+
+\end{thebibliography}
+\end{document} 

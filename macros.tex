@@ -1,0 +1,233 @@
+\usepackage{amsmath, amsthm, amssymb,xcolor,url,booktabs,physics}  %cite
+\urlstyle{sf}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\synctex=1
+
+\ifdefined\blackandwhite
+\usepackage[pdftex]{hyperref} %pagebackref
+\else
+\usepackage[colorlinks,pdftex]{hyperref} %pagebackref
+\hypersetup{citecolor = blue, linkcolor = red!70!black}
+\fi
+\usepackage[linewidth=1pt]{mdframed}
+
+\newcommand{\nc}{\newcommand}
+\nc{\rnc}{\renewcommand}
+\renewcommand{\ket}[1]{|{#1}\rangle}
+\newcommand{\kett}[1]{|{#1}\rrangle}
+\renewcommand{\bra}[1]{\langle{#1}|}
+\newcommand{\braa}[1]{\llangle{#1}|}
+\renewcommand{\braket}[2]{\langle{#1}|{#2}\rangle}
+\newcommand{\brakett}[2]{\llangle{#1}|{#2}\rrangle}
+\renewcommand{\norm}[1]{\|{#1}\|}
+\newcommand{\Norm}[1]{\left\|{#1}\right\|}
+
+
+
+
+\DeclareMathOperator{\Bin}{Bin}
+\DeclareMathOperator{\conv}{conv}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Img}{Im}
+\DeclareMathOperator{\inj}{inj}
+\DeclareMathOperator{\Par}{Par}
+\DeclareMathOperator{\poly}{poly}
+\DeclareMathOperator{\polylog}{polylog}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\Sep}{Sep}
+\DeclareMathOperator{\SepSym}{SepSym}
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\swap}{SWAP}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\ProdSym}{ProdSym}
+\DeclareMathOperator{\SEP}{SEP}
+\DeclareMathOperator{\PPT}{PPT}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Wg}{Wg}
+\DeclareMathOperator{\WMEM}{WMEM}
+\DeclareMathOperator{\WOPT}{WOPT}
+
+\DeclareMathOperator{\BPP}{\mathsf{BPP}}
+\DeclareMathOperator{\BQP}{\mathsf{BQP}}
+\DeclareMathOperator{\cnot}{\normalfont\textsc{cnot}}
+\DeclareMathOperator{\DTIME}{\mathsf{DTIME}}
+\DeclareMathOperator{\NTIME}{\mathsf{NTIME}}
+\DeclareMathOperator{\MA}{\mathsf{MA}}
+\DeclareMathOperator{\NP}{\mathsf{NP}}
+\DeclareMathOperator{\coNP}{\mathsf{co-NP}}
+\DeclareMathOperator{\PH}{\mathsf{PH}}
+\DeclareMathOperator{\SharpP}{\mathsf{\#P}}
+\DeclareMathOperator{\NEXP}{\mathsf{NEXP}}
+\DeclareMathOperator{\Ptime}{\mathsf{P}}
+\DeclareMathOperator{\QMA}{\mathsf{QMA}}
+\DeclareMathOperator{\QCMA}{\mathsf{QCMA}}
+\DeclareMathOperator{\BellQMA}{\mathsf{BellQMA}}
+\DeclareMathOperator{\PostBPP}{\mathsf{PostBPP}}
+\DeclareMathOperator{\PostBQP}{\mathsf{PostBQP}}
+
+\def\sat{\text{3-SAT}}
+\def\be#1\ee{\begin{equation}#1\end{equation}}
+\def\bea#1\eea{\begin{eqnarray}#1\end{eqnarray}}
+\def\beas#1\eeas{\begin{eqnarray*}#1\end{eqnarray*}}
+\def\ba#1\ea{\begin{align}#1\end{align}}
+\def\bas#1\eas{\begin{align*}#1\end{align*}}
+\def\bpm#1\epm{\begin{pmatrix}#1\end{pmatrix}}
+\nc{\non}{\nonumber}
+\nc{\nn}{\nonumber}
+\nc{\eq}[1]{(\ref{eq:#1})}
+\nc{\eqs}[2]{(\ref{eq:#1}) and (\ref{eq:#2})}
+%\def\eq#1{Eq.~(\ref{eq:#1})}
+%\def\eqs#1#2{Eqs.~(\ref{eq:#1}) and (\ref{eq:#2})}
+\rnc{\L}{\left} 
+\nc{\R}{\right}
+\nc{\ra}{\rightarrow}
+\nc{\ot}{\otimes}
+
+
+\newtheorem{thm}{Theorem}
+\newtheorem*{thm*}{Theorem}
+\newtheorem{claim}[thm]{Claim}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{proto}{Protocol}
+\newtheorem{con}[thm]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{remark}{Remark}
+\newtheorem{observation}{Observation}
+\newtheorem{example}{Example}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{dfn}[thm]{Definition}
+\theoremstyle{plain}
+
+\makeatletter
+\newtheorem*{rep@theorem}{\rep@title}
+\newcommand{\newreptheorem}[2]{%
+\newenvironment{rep#1}[1]{%
+ \def\rep@title{#2 \ref{##1} (restatement)}%
+ \begin{rep@theorem}}%
+ {\end{rep@theorem}}}
+\makeatother
+
+\newreptheorem{thm}{Theorem}
+\newreptheorem{lem}{Lemma}
+
+
+\nc\eps{\epsilon}
+
+\def\vb{\vec{b}}
+\def\vx{\vec{x}}
+\def\Usch{U_{\text{Sch}}}
+
+\nc\cA{\mathcal{A}}
+\nc\cB{\mathcal{B}}
+\nc\cC{\mathcal{C}}
+\nc\cD{\mathcal{D}}
+\nc\cE{\mathcal{E}}
+\nc\cF{\mathcal{F}}
+\nc\cG{\mathcal{G}}
+\nc\cH{\mathcal{H}}
+\nc\cI{\mathcal{I}}
+\nc\cJ{\mathcal{J}}
+\nc\cK{\mathcal{K}}
+\nc\cL{\mathcal{L}}
+\nc\cM{\mathcal{M}}
+\nc\cN{\mathcal{N}}
+\nc\cO{\mathcal{O}}
+\nc\cP{\mathcal{P}}
+\nc\cQ{\mathcal{Q}}
+\nc\cR{\mathcal{R}}
+\nc\cS{\mathcal{S}}
+\nc\cT{\mathcal{T}}
+\nc\cU{\mathcal{U}}
+\nc\cV{\mathcal{V}}
+\nc\cW{\mathcal{W}}
+\nc\cX{\mathcal{X}}
+\nc\cY{\mathcal{Y}}
+\nc\cZ{\mathcal{Z}}
+
+\def\bp{\mathbf{p}}
+\def\bq{\mathbf{q}}
+\def\bP{{\bf P}}
+\def\bQ{{\bf Q}}
+\def\gl{\mathfrak{gl}}
+
+\nc\bbC{\mathbb{C}}
+\DeclareMathOperator*{\E}{\mathbb{E}}
+\DeclareMathOperator*{\bbE}{\mathbb{E}}
+\nc\bbF{\mathbb{F}}
+\nc\bbM{\mathbb{M}}
+\nc\bbN{\mathbb{N}}
+\nc\bbR{\mathbb{R}}
+\nc\bbZ{\mathbb{Z}}
+
+\nc\benum{\begin{enumerate}}
+\nc\eenum{\end{enumerate}}
+\nc\bit{\begin{itemize}}
+\nc\eit{\end{itemize}}
+\newcommand{\fig}[1]{Fig.~\ref{fig:#1}}
+\newcommand{\secref}[1]{Section~\ref{sec:#1}}
+\newcommand{\appref}[1]{Appendix~\ref{sec:#1}}
+\newcommand{\lemref}[1]{Lemma~\ref{lem:#1}}
+\newcommand{\thmref}[1]{Theorem~\ref{thm:#1}}
+\newcommand{\propref}[1]{Proposition~\ref{prop:#1}}
+\newcommand{\protoref}[1]{Protocol~\ref{proto:#1}}
+\newcommand{\defref}[1]{Definition~\ref{def:#1}}
+\newcommand{\corref}[1]{Corollary~\ref{cor:#1}}
+\newcommand{\conref}[1]{Conjecture~\ref{con:#1}}
+\newcommand{\tabref}[1]{Table~\ref{tab:#1}}
+
+\newcommand{\FIXME}[1]{{\color{red}FIXME: #1}}
+\nc{\todo}[1]{\textcolor{red}{todo: #1}}
+\nc{\Anote}[1]{\textcolor{red}{Aram note: #1}}
+
+\newcommand{\boxdfn}[2]{
+\begin{figure}[h]\begin{center}
+\noindent \framebox{\begin{minipage}{0.8\textwidth}
+\begin{dfn}[{\bf #1}]\ \\ \\#2
+\end{dfn}\end{minipage}}
+\end{center}\end{figure}}
+
+\newcommand{\boxproto}[2]{
+\begin{figure}[h]\begin{center}
+\noindent \framebox{\begin{minipage}{0.8\textwidth}
+\begin{proto}[{\bf #1}]\ \\ \\#2\end{proto}
+\end{minipage}}
+\end{center}\end{figure}}
+
+\def\begsub#1#2\endsub{\begin{subequations}\label{eq:#1}\begin{align}#2\end{align}\end{subequations}}
+\nc\mnb[1]{\medskip\noindent{\bf #1}}
+\newcommand{\iso}[1]{\stackrel{#1}{\cong}}
+\nc{\pder}[2]{\frac{\partial {#1}}{\partial {#2}}}
+\nc{\p}{\partial}
+
+\newcounter{lecnum}
+
+\newcommand{\lecture}[4]{
+   \pagestyle{myheadings}
+   \renewcommand{\thepage}{\thelecnum-\arabic{page}}
+   \renewcommand{\thesection}{\thelecnum.\arabic{section}}
+   \renewcommand{\theequation}{\thelecnum.\arabic{equation}}
+   \renewcommand{\thefigure}{\thelecnum.\arabic{figure}}
+   \renewcommand{\thetable}{\thelecnum.\arabic{table}}
+   \thispagestyle{plain}
+   \newpage
+   \setcounter{lecnum}{#1}
+   \setcounter{page}{1}
+   \noindent
+   \begin{center}
+   \framebox{
+      \vbox{\vspace{2mm}
+    \hbox to 6.28in { {\bf %more details 
+     } }
+       \vspace{4mm}
+       \hbox to 6.28in { {\Large \hfill QLunch \# #1: #2  \hfill} }
+       \vspace{2mm}
+       \hbox to 6.28in { {\it Speakers: #3 \hfill Scribe: #4} }
+      \vspace{2mm}}
+   }
+   \end{center}
+   \markboth{Q-Lunch #1: #2}{QLunch #1: #2}
+}
